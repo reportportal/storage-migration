@@ -44,7 +44,7 @@ helm install rpsm-multi-single -f values.yaml rpsm-multi-single-0.1.0-DEV.tgz
 helm uninstall rpsm-multi-single
 ```
 4. Create a bucket in Amazon S3. [Create your first S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html)
-5. To migrate data from single bucket MinIO to single bucket S3 deploy `storage-migration/rpsm-s3-minio` Helm chart. Use [values.yaml](https://github.com/reportportal/rpsm-s3-minio/blob/develop/rpsm-multi-single/values.yaml) to pass your values. [More info](https://github.com/reportportal/rpsm-s3-minio/blob/develop/rpsm-multi-single/README.md).
+5. To migrate data from single bucket MinIO to single bucket S3 deploy `storage-migration/rpsm-s3-minio` Helm chart. Use [values.yaml](https://github.com/reportportal/storage-migration/blob/develop/rpsm-s3-minio/values.yaml) to pass your values. [More info](https://github.com/reportportal/storage-migration/blob/develop/rpsm-s3-minio/README.md).
 ```
 helm install rpsm-s3-minio -f values.yaml rpsm-s3-minio-0.1.0-DEV.tgz
 ```
