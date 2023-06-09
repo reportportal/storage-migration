@@ -1,0 +1,66 @@
+image:
+  repository: public.ecr.aws/v8s8f8g2/complex-migration
+  pullPolicy: IfNotPresent
+  tag: "rpsm-multi-single-0.1.0-DEV"
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 100m
+    memory: 512Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+storage:
+  ## Switching between MinIO and S3 storages
+  type: minio
+  # type: s3
+  removeAfterMigration: true
+  secretName: ""
+  accesskey: ""
+  secretkey: ""
+  accesskeyName: "access-key"
+  secretkeyName: "secret-key"
+  minio:
+    endpoint: http://<minio-release-name>-minio.default.svc.cluster.local:9000
+  s3:
+    region: "eu-west-3"
+  bucket:
+    bucketPrefix: "prj-"
+    ## bucket name for storing Plugins
+    bucketForPlugins: "rp-bucket"
+    ## A new single bucket to which the data will be migrated
+    bucketSingleName: "rp-storage"
+
+postgresql:
+  SecretName: ""
+  endpoint:
+    address: <postgresql-release-name>-postgresql.default.svc.cluster.local
+    port: 5432
+    user: rpuser
+    dbName: reportportal
+    password:
+    ## Number of database connections
+    connections: 

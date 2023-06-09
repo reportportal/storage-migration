@@ -1,0 +1,53 @@
+image:
+  repository: public.ecr.aws/v8s8f8g2/complex-migration
+  pullPolicy: IfNotPresent
+  tag: "rpsm-s3-minio-0.1.0-DEV"
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 100m
+    memory: 512Mi
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+storage:
+  minio:
+    secretName: ""
+    accesskey: <minio-accesskey>
+    secretkey: <minio-secretkey>
+    accesskeyName: "access-key"
+    secretkeyName: "secret-key"
+    endpoint: http://<minio-release-name>-minio.default.svc.cluster.local:9000
+  s3:
+    secretName: ""
+    accesskey: <s3-accesskey>
+    secretkey: <s3-secretkey>
+    accesskeyName: "s3-access-key"
+    secretkeyName: "s3-secret-key"
+    ## S3 enpoints ref: https://docs.aws.amazon.com/general/latest/gr/s3.html
+    endpoint: http://s3.eu-central-1.amazonaws.com
+  bucket:
+    fromMinioBucket: rp-minio-storage
+    toS3Bucket: rp-s3-storage

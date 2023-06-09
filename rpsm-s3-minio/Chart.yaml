@@ -1,0 +1,6 @@
+apiVersion: v2
+name: rpsm-s3-minio
+description: Report Portal storage migration from single bucket MinIO to single bucket S3
+type: application
+version: 0.1.0-DEV
+appVersion: "0.1.0"
